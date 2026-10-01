@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TrainForge — AI Video Studio</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">TF</span> TrainForge</div>
+    <div id="systemStatus" class="status">● Checking backend…</div>
+  </header>
+
+  <main class="shell">
+    <aside class="sidebar">
+      <button class="nav active" data-panel="dashboard">Dashboard</button>
+      <button class="nav" data-panel="trends">Trends</button>
+      <button class="nav" data-panel="script">Script</button>
+      <button class="nav" data-panel="storyboard">Storyboard</button>
+      <button class="nav" data-panel="export">Export</button>
+    </aside>
+
+    <section class="content">
+      <section id="dashboard" class="panel active">
+        <div class="hero">
+          <div>
+            <p class="eyebrow">AI VIDEO PRODUCTION</p>
+            <h1>Turn an idea into a video.</h1>
+            <p class="muted">Write a scene, choose your format, and TrainForge sends it to the video-generation backend.</p>
+          </div>
+          <div class="orb">TF</div>
+        </div>
+
+        <div class="grid">
+          <div class="card span2">
+            <label for="prompt">Video prompt</label>
+            <textarea id="prompt" placeholder="Example: A cinematic night train crosses a futuristic African city, neon reflections on wet rails, slow tracking camera, atmospheric lighting."></textarea>
+            <div class="row">
+              <select id="aspectRatio">
+                <option value="16:9">Landscape 16:9</option>
+                <option value="9:16">Portrait 9:16</option>
+                <option value="1:1">Square 1:1</option>
+                <option value="4:3">Classic 4:3</option>
+                <option value="3:4">Portrait 3:4</option>
+              </select>
+              <select id="duration">
+                <option value="5">5 seconds</option>
+                <option value="10">10 seconds</option>
+                <option value="15">15 seconds</option>
+              </select>
+              <button id="generateBtn" class="primary">Generate video</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="metric"><span>Backend</span><strong id="backendMetric">—</strong></div>
+            <div class="metric"><span>Model</span><strong id="modelMetric">—</strong></div>
+            <div class="metric"><span>Last job</span><strong id="jobMetric">None</strong></div>
+          </div>
+        </div>
+
+        <div id="jobCard" class="card job hidden">
+          <div class="jobHead">
+            <div>
+              <p class="eyebrow">RENDER JOB</p>
+              <h2 id="jobTitle">Preparing…</h2>
+            </div>
+            <span id="jobBadge" class="badge">QUEUED</span>
+          </div>
+          <div class="progress"><div id="progressBar"></div></div>
+          <p id="jobMessage" class="muted">Submitting your prompt…</p>
+          <video id="resultVideo" class="resultVideo hidden" controls playsinline></video>
+          <div class="row">
+            <a id="downloadBtn" class="buttonLink hidden" download="trainforge-video.mp4">Download video</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="trends" class="panel">
+        <div class="sectionTitle"><p class="eyebrow">IDEATION</p><h1>Trends</h1></div>
+        <div class="grid three">
+          <button class="idea card" data-idea="A futuristic African city at sunrise, cinematic drone shot, electric trains, warm atmospheric haze.">Futuristic city</button>
+          <button class="idea card" data-idea="A high-speed train crossing dramatic mountains during a thunderstorm, cinematic camera movement, realistic rain.">Storm train</button>
+          <button class="idea card" data-idea="A luxury night train moving through a neon metropolis, reflections on wet glass, elegant cinematic lighting.">Neon night</button>
+        </div>
+      </section>
+
+      <section id="script" class="panel">
+        <div class="sectionTitle"><p class="eyebrow">STORY</p><h1>Script</h1></div>
+        <div class="card"><textarea id="scriptBox" placeholder="Write your narration or scene beats here…"></textarea></div>
+      </section>
+
+      <section id="storyboard" class="panel">
+        <div class="sectionTitle"><p class="eyebrow">PRE-PRODUCTION</p><h1>Storyboard</h1></div>
+        <div class="grid three">
+          <div class="card shot"><b>01</b><span>Establishing shot</span></div>
+          <div class="card shot"><b>02</b><span>Action / movement</span></div>
+          <div class="card shot"><b>03</b><span>Closing shot</span></div>
+        </div>
+      </section>
+
+      <section id="export" class="panel">
+        <div class="sectionTitle"><p class="eyebrow">DELIVERY</p><h1>Export</h1></div>
+        <div class="card">
+          <h2>Video output</h2>
+          <p class="muted">Your completed render will appear here after generation.</p>
+          <video id="exportVideo" class="resultVideo hidden" controls playsinline></video>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
